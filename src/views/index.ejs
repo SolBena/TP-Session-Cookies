@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    Session & Cookies
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body style="background-color: <%= locals.bgColor ? bgColor : null %>;" class="index">
+
+  <% if (locals.name) {%>
+
+    <section>
+      <h1>Hola <%= name %>!, <br>
+          elegiste el color: <%= colors %>, <br>
+            tu email es: <%= email %> <br>
+              y tu edad es: <%= edad %>
+      </h1>
+    </section>
+
+    <% } else {%>
+      <h1>Bienvenido!</h1>
+
+      <section>
+        <form class="formulario" action="/" method="POST">
+
+          <div class="form-option">
+            <label for="name">Ingrese su nombre</label><br>
+            <input type="text" name="name" id="name"> <br>
+            <small>
+              <%= locals.errors && errors.name ? errors.name.msg : null %>
+            </small><br>
+          </div>
+
+
+          <div class="form-option">
+            <select name="colors" id="colors">
+              <option hidden selected value="">Seleccione un color</option>
+              <option value="sandybrown">Naranja</option>
+              <option value="silver">Gris</option>
+              <option value="LightSkyBlue">Celeste</option>
+            </select> <br>
+            <div>
+              <label for="recordarColor">Recordar color</label>
+              <input type="checkbox" name="recordarColor" id="recordarColor">
+            </div>
+            <small>
+              <%= locals.errors && errors.colors ? errors.colors.msg : null %>
+            </small><br>
+
+          </div>
+
+          <div class="form-option">
+            <label for="email">Ingrese su email</label><br>
+            <input type="text" name="email" id="email"> <br>
+            <small>
+              <%= locals.errors && errors.email ? errors.email.msg : null %>
+            </small><br>
+
+          </div>
+
+          <div class="form-option">
+            <label for="edad">Ingrese su edad</label><br>
+            <input type="text" name="edad" id="edad"> <br>
+            <small>
+              <%= locals.errors && errors.edad ? errors.edad.msg : null %>
+            </small><br>
+
+          </div>
+
+          <div>
+            <input class="enviar" type="submit" value="Enviar">
+            <a href="/destroy">Olvidar Color</a>
+          </div>
+         
+        </form>
+
+      </section>
+      <% } %>
+</body>
+
+</html>
